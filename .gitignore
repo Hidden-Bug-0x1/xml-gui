@@ -1,0 +1,7 @@
+
+# ignore the binary files
+bin
+bin/*
+# ignore the object files
+objs
+objs/*
