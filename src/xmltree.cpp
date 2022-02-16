@@ -32,7 +32,3 @@ std::string* Node::content() {
 std::vector<Node*>* Node::children() {
     return m_children;
 }
-
-void Node::clear() {
-    m_children = new std::vector<Node*>();
-}
