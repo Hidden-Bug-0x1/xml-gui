@@ -34,6 +34,8 @@
 
 ![description of an image](images/example.jpg)
 
+---
+
 <a id="read"></a>
 
 ## Reading an XML file or element

@@ -1,0 +1,28 @@
+<mail>
+    <note>
+        <to>Tove</to>
+        <from>Jani</from>
+        <heading>Reminder</heading>
+        <body>Don't forget me this weekend!</body>
+    </note>
+    <letter>
+        <to>Billy</to>
+        <from>Bob</from>
+        <heading>Thank You</heading>
+        <body>Thank you for the birthday gift!</body>
+    </letter>
+    <bill>
+        <from>Bank</from>
+        <body>You owe $100</body>
+    </bill>
+    <box>
+        <to>John Doe</to>
+        <from>Sarah White</from>
+        <content>
+            <gift>Hoodie</gift>
+            <note>
+                <body>Merry Christmas!</body>
+            </note>
+        </content>
+    </box>
+</mail>

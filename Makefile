@@ -2,6 +2,7 @@
 PROJDIR := $(realpath $(CURDIR)/)
 SOURCEDIR := $(PROJDIR)/src
 BUILDDIR := $(PROJDIR)/objs
+BINDIR := $(PROJDIR)/bin
 
 # Name of the final executable
 TARGET = xmlgui
@@ -10,7 +11,7 @@ TARGET = xmlgui
 VERBOSE = TRUE
 
 # Create the list of directories
-DIRS = devices connections
+DIRS = .
 SOURCEDIRS = $(foreach dir, $(DIRS), $(addprefix $(SOURCEDIR)/, $(dir)))
 TARGETDIRS = $(foreach dir, $(DIRS), $(addprefix $(BUILDDIR)/, $(dir)))
 
@@ -71,7 +72,7 @@ all: directories $(TARGET)
 
 $(TARGET): $(OBJS)
 		$(HIDE)echo Linking $@
-		$(HIDE)$(CC) $(CXXFLAGS) $(OBJS) $(SOURCEDIR)/main.cpp -o bins/$(TARGET)
+		$(HIDE)$(CC) $(CXXFLAGS) $(OBJS) -o $(BINDIR)/$(TARGET)
 
 # Include dependencies
 -include $(DEPS)
@@ -85,8 +86,8 @@ directories:
 # Remove all objects, dependencies and executable files generated during the build
 clean:
 		@$(RMDIR) $(subst /,$(PSEP),$(TARGETDIRS)) $(ERRIGNORE)
-		@$(RM) bins/$(TARGET) $(ERRIGNORE)
+		@$(RM) $(BINDIR)/$(TARGET) $(ERRIGNORE)
 		@echo Cleaning done! 
 
 run: 
-	@bins/./$(TARGET)
+	@$(BINDIR)/./$(TARGET)
