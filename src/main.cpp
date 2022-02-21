@@ -16,10 +16,10 @@ void indent(int tabs) {
     std::cout << ending;
 }
 
-void print(Node* root, int tabs=0) {
+void print(Element* root, int tabs=0) {
     std::string tag = *root->tag();
     std::string content = *root->content();
-    std::vector<Node*> children = *root->children();
+    std::vector<Element*> children = *root->children();
 
     indent(tabs);
 
@@ -35,11 +35,11 @@ void print(Node* root, int tabs=0) {
     }
 }
 
-bool bills(Node* root) {
+bool bills(Element* root) {
     std::string tag = *root->tag();
     if (tag == "bill") return true;
     else {
-        std::vector<Node*> children = *root->children();
+        std::vector<Element*> children = *root->children();
         for(auto child : children) {
             return bills(child);
         }
@@ -47,10 +47,10 @@ bool bills(Node* root) {
     return false;
 }
 
-bool frombank(Node* root) {
+bool frombank(Element* root) {
     std::string tag = *root->tag();
     if (tag == "bill") {
-        std::vector<Node*> children = *root->children();
+        std::vector<Element*> children = *root->children();
         for(auto child : children) {
             std::string childtag = *child->tag();
             std::string childcont = *child->content();
@@ -59,7 +59,7 @@ bool frombank(Node* root) {
         return false;
     }
     else {
-        std::vector<Node*> children = *root->children();
+        std::vector<Element*> children = *root->children();
         for(auto child : children) {
             return bills(child);
         }
@@ -67,11 +67,11 @@ bool frombank(Node* root) {
     return false;
 }
 
-Node* newbill(const char* sfrom) {
-    Node* bill = new Node(str("bill"), str(""));
-    Node* from =  new Node(str("from"), str(sfrom));
-    Node* body = new Node(str("body"), str("You owe $100"));
-    Node* address = new Node(str("address"), str("100 C St, Bank, USA"));
+Element* newbill(const char* sfrom) {
+    Element* bill = new Element(str("bill"), str(""));
+    Element* from =  new Element(str("from"), str(sfrom));
+    Element* body = new Element(str("body"), str("You owe $100"));
+    Element* address = new Element(str("address"), str("100 C St, Bank, USA"));
     
     body->insert(address);
     bill->insert(from);
@@ -81,16 +81,16 @@ Node* newbill(const char* sfrom) {
 }
 
 int main() {
-    Node* mail = new Node(str("mail"), str(""));
+    Element* mail = new Element(str("mail"), str(""));
 
-    Node* note = new Node(str("note"), str(""));
-    Node* to = new Node(str("to"), str("John Doe"));
-    Node* headline = new Node(str("headline"), str("Reminder"));
-    Node* note_body = new Node(str("message"), str(""));
-    Node* msg = new Node(str("message"), str("Please do your chores!"));
-    Node* img = new Node(str("image"), str(""));
-    Node* src = new Node(str("src"), str("kisses.jpg"));
-    Node* alt = new Node(str("alt_text"), str("XOXOXOXO"));
+    Element* note = new Element(str("note"), str(""));
+    Element* to = new Element(str("to"), str("John Doe"));
+    Element* headline = new Element(str("headline"), str("Reminder"));
+    Element* note_body = new Element(str("message"), str(""));
+    Element* msg = new Element(str("message"), str("Please do your chores!"));
+    Element* img = new Element(str("image"), str(""));
+    Element* src = new Element(str("src"), str("kisses.jpg"));
+    Element* alt = new Element(str("alt_text"), str("XOXOXOXO"));
 
     img->insert(src);
     img->insert(alt);
@@ -122,7 +122,7 @@ int main() {
 
     print(mail);
 
-    std::vector<Node*> allbills = *mail->select(bills);
+    std::vector<Element*> allbills = *mail->select(bills);
 
     std::cout << "There are " << allbills.size() << " bills to pay." << std::endl;
     std::cout << "There are " << mail->select(frombank)->size() << " bills from the bank." << std::endl;

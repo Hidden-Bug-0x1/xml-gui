@@ -1,34 +1,49 @@
 #include "../inc/xmltree.hpp"
 
-Node::Node(std::string* tag, std::string* content) 
-: m_tag(tag), m_content(content) {
-    m_children = new std::vector<Node*>();
+Element::Element(std::string* tag, std::string* content) 
+: m_tag(tag), m_content(content) 
+{
+    m_children = new std::vector<Element*>();
 }
 
-Node::~Node() {
+Element::~Element() 
+{
     delete m_children;
+    delete m_attributes;
 }
 
-void Node::insert(Node* child) {
+void Element::insert(Element* child) 
+{
     m_children->push_back(child);
 }
 
-std::vector<Node*>* Node::select(condfunc condition) {
-    std::vector<Node*>* selected = new std::vector<Node*>();
-    for (std::vector<Node*>::iterator child = m_children->begin(); child != m_children->end(); child++){
+void Element::attribute(std::string key, std::string val) 
+{
+    Attribute* attr = new Attribute(key, val);
+    m_attributes->push_back(attr);
+}
+
+std::vector<Element*>* Element::select(condfunc condition) 
+{
+    std::vector<Element*>* selected = new std::vector<Element*>();
+    for (std::vector<Element*>::iterator child = m_children->begin(); child != m_children->end(); child++)
+    {
         if (condition(*child)) selected->push_back(*child);
     }
     return selected;
 }
 
-std::string* Node::tag() {
+std::string* Element::tag() 
+{
     return m_tag;
 }
 
-std::string* Node::content() {
+std::string* Element::content() 
+{
     return m_content;
 }
 
-std::vector<Node*>* Node::children() {
+std::vector<Element*>* Element::children() 
+{
     return m_children;
 }

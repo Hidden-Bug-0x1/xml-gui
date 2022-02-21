@@ -1,6 +1,6 @@
-#ifndef XML
-#define XML
+#ifndef XML_HPP
+#define XML_HPP
 
 #include "./xmltree.hpp"
 
-#endif//XML
+#endif//XML_HPP
