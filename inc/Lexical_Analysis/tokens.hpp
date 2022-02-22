@@ -1,5 +1,5 @@
-#ifndef TOKENS_HPP
-#define TOKENS_HPP
+#ifndef TOKEN_HPP
+#define TOKEN_HPP
 
 #include <string>
 #include "./position.hpp"
@@ -10,18 +10,20 @@ typedef enum {
     open,       // <
     close,      // >
     slash,      // /
-} TOKENS;
+    EORF,       // the end of readable file
+    ERROR,      // indicates that there is an error
+} TOKEN;
 
 class Token {
 private:
-    TOKENS m_token;
+    TOKEN m_token;
     std::string m_value;
-    Position m_pos;
+    Position* m_pos;
 public:
-    Token(TOKENS token, std::string value, Position pos);
+    Token(TOKEN token, std::string value, Position* pos);
     ~Token();
-    TOKENS token();
+    TOKEN token();
     std::string value();
 };
 
-#endif//TOKENS_HPP
+#endif//TOKEN_HPP

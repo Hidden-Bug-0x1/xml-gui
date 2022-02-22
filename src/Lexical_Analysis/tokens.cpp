@@ -1,12 +1,12 @@
 #include "../../inc/Lexical_Analysis/tokens.hpp"
 
-Token::Token(TOKENS token, std::string value, Position pos)
+Token::Token(TOKEN token, std::string value, Position* pos)
 : m_token(token), m_value(value), m_pos(pos) 
 {
     // nothing to do here ...
 }
 
-TOKENS Token::token () 
+TOKEN Token::token () 
 {
     return m_token;
 }

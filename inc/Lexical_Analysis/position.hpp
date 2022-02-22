@@ -8,7 +8,7 @@ private:
     long m_index;   // accumulated position
 public:
     Position(); //default constructor
-    Position(long col, long line, long index=0);
+    Position(long col, long line, long index=-1);
     void advance();     // increment col
     void newline();     // increment line and reset col
     long index();       // return m_index

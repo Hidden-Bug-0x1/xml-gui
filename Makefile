@@ -11,7 +11,7 @@ TARGET = xmlgui
 VERBOSE = TRUE
 
 # Create the list of directories
-DIRS = .
+DIRS = . Lexical_Analysis
 SOURCEDIRS = $(foreach dir, $(DIRS), $(addprefix $(SOURCEDIR)/, $(dir)))
 TARGETDIRS = $(foreach dir, $(DIRS), $(addprefix $(BUILDDIR)/, $(dir)))
 

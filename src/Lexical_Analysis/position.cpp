@@ -2,12 +2,12 @@
 
 Position::Position()
 {
-    m_col = 0;
+    m_col = -1;
     m_line = 0;
     m_index = -1;
 }
 
-Position::Position(long col, long line, long index=-1) 
+Position::Position(long col, long line, long index) 
 : m_col(col), m_line(line), m_index(index)
 {
 

@@ -7,3 +7,6 @@ objs
 objs/*
 # don't include .vscode
 .vscode
+# ignore the tests folder because they're not real unit tests
+tests
+tests/*
