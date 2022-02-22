@@ -2,6 +2,7 @@
 #define TOKENS_HPP
 
 #include <string>
+#include "./position.hpp"
 
 typedef enum {
     assign,     // =
@@ -15,8 +16,9 @@ class Token {
 private:
     TOKENS m_token;
     std::string m_value;
+    Position m_pos;
 public:
-    Token(TOKENS token, std::string value);
+    Token(TOKENS token, std::string value, Position pos);
     ~Token();
     TOKENS token();
     std::string value();
